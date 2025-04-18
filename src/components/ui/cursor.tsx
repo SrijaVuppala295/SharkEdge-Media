@@ -1,7 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { motion, spring, useSpring } from 'framer-motion';
-import { MousePointer2 } from 'lucide-react';
+import { motion, useSpring } from 'framer-motion';
 
 const Cursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -31,21 +30,21 @@ const Cursor = () => {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-purple-500/60 rounded-full pointer-events-none z-50 mix-blend-difference"
+        className="fixed top-0 left-0 w-4 h-4 bg-green-500/60 rounded-full pointer-events-none z-50 mix-blend-difference"
         style={{
           x: cursorX,
           y: cursorY,
           scale: isPointer ? 1.5 : 1,
-          transition: { type: "spring", damping: 20, stiffness: 200, mass: 0.5 }
+          transition: { duration: 0.2 }
         }}
       />
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border-2 border-purple-400/40 rounded-full pointer-events-none z-50"
+        className="fixed top-0 left-0 w-8 h-8 border-2 border-green-400/40 rounded-full pointer-events-none z-50"
         style={{
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,
           scale: isLink ? 1.5 : 1,
-          transition: { type: "spring", damping: 20, stiffness: 200, mass: 0.5 }
+          transition: { duration: 0.2 }
         }}
       />
     </>

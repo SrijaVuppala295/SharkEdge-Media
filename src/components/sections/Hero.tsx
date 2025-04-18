@@ -49,14 +49,19 @@ const Hero = () => {
       />
 
       <div className="container mx-auto px-4 py-16 text-center relative z-10">
-        <motion.h1 
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-bold mb-6 tracking-tight bg-gradient-to-r from-green-400 via-green-200 to-emerald-400 bg-clip-text text-transparent"
+          className="mb-6"
         >
-          InnovateSync Solutions
-        </motion.h1>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-green-400 via-green-200 to-emerald-400 bg-clip-text text-transparent mb-4">
+            Digital Marketing
+          </h1>
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-green-400 via-green-200 to-emerald-400 bg-clip-text text-transparent">
+            & Growth Solutions
+          </h1>
+        </motion.div>
         
         <motion.p 
           initial={{ opacity: 0, y: 20 }}

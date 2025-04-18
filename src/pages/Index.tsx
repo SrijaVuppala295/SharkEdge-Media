@@ -8,7 +8,6 @@ import Clients from "@/components/sections/Clients";
 import Reviews from "@/components/sections/Reviews";
 import FAQ from "@/components/sections/FAQ";
 import BookCall from "@/components/sections/BookCall";
-import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 
 const Index = () => {
@@ -22,7 +21,6 @@ const Index = () => {
       <Reviews />
       <FAQ />
       <BookCall />
-      <Contact />
       <Footer />
     </div>
   );
