@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -55,8 +54,7 @@ const Clients = () => {
       dragFree: true,
       skipSnaps: true,
       slidesToScroll: 1,
-      align: 'start',
-      speed: 15
+      align: 'start'
     }, 
     [Autoplay({ delay: 1000, stopOnInteraction: false })]
   );
@@ -79,7 +77,7 @@ const Clients = () => {
           animate={controls}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-light text-white mb-6">
+          <h2 className="text-5xl md:text-6xl font-light tracking-wider text-white mb-6">
             Our Trusted <span className="text-green-500">Clients</span>
           </h2>
           <div className="h-1 w-20 bg-green-500 mx-auto"></div>

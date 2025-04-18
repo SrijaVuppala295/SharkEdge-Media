@@ -45,8 +45,8 @@ const Navigation = ({ className }: { className?: string }) => {
             animate={{ opacity: 1, x: 0 }}
             className="flex-shrink-0"
           >
-            <span className="text-2xl font-bold">
-              <span className="text-white">Sharkedge</span>{" "}
+            <span className="text-3xl font-light tracking-wider">
+              <span className="text-white">SharkEdge</span>{" "}
               <span className="text-green-500">Media</span>
             </span>
           </motion.div>
@@ -56,14 +56,14 @@ const Navigation = ({ className }: { className?: string }) => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-sm text-white hover:text-green-400 transition-colors tracking-wider"
+                className="text-sm font-light text-white hover:text-green-400 transition-colors tracking-[0.2em]"
               >
                 {item.label}
               </button>
             ))}
             <button 
               onClick={() => scrollToSection("contact")}
-              className="px-6 py-2 border border-green-500 text-white hover:bg-green-500 hover:text-black transition-colors duration-300 rounded-full text-sm tracking-wider"
+              className="px-6 py-2 border border-green-500 text-white hover:bg-green-500 hover:text-black transition-colors duration-300 rounded-full text-sm font-light tracking-[0.2em]"
             >
               CONTACT US
             </button>
@@ -88,14 +88,14 @@ const Navigation = ({ className }: { className?: string }) => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left px-4 py-2 text-white hover:text-green-400 transition-colors text-sm tracking-wider"
+                className="block w-full text-left px-4 py-2 text-white hover:text-green-400 transition-colors text-sm font-light tracking-[0.2em]"
               >
                 {item.label}
               </button>
             ))}
             <button 
               onClick={() => scrollToSection("contact")}
-              className="w-full mt-2 px-4 py-2 border border-green-500 text-white hover:bg-green-500 hover:text-black transition-colors duration-300 rounded-full text-sm tracking-wider"
+              className="w-full mt-2 px-4 py-2 border border-green-500 text-white hover:bg-green-500 hover:text-black transition-colors duration-300 rounded-full text-sm font-light tracking-[0.2em]"
             >
               CONTACT US
             </button>
@@ -107,3 +107,4 @@ const Navigation = ({ className }: { className?: string }) => {
 };
 
 export default Navigation;
+
