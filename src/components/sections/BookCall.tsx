@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Calendar, Clock, Mail, MessageSquare, Phone, User, Building2, Calendar as CalendarIcon } from "lucide-react";
+import { Calendar, Clock, Mail, MessageSquare, Phone, User, Building2, Calendar as CalendarIcon, Globe } from "lucide-react";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/animations";
 import { useState } from "react";

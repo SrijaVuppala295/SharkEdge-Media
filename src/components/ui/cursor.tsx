@@ -35,8 +35,8 @@ const Cursor = () => {
           x: cursorX,
           y: cursorY,
           scale: isPointer ? 1.5 : 1,
-          transition: { duration: 0.2 }
         }}
+        transition={{ duration: 0.2 }}
       />
       <motion.div
         className="fixed top-0 left-0 w-8 h-8 border-2 border-green-400/40 rounded-full pointer-events-none z-50"
@@ -44,8 +44,8 @@ const Cursor = () => {
           x: mousePosition.x - 16,
           y: mousePosition.y - 16,
           scale: isLink ? 1.5 : 1,
-          transition: { duration: 0.2 }
         }}
+        transition={{ duration: 0.2 }}
       />
     </>
   );
