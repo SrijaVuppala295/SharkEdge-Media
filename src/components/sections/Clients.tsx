@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from "@/components/ui/card";
 import useEmblaCarousel from 'embla-carousel-react';
@@ -44,20 +44,28 @@ const clients = [
 ];
 
 const Clients = () => {
-  const [emblaRef] = useEmblaCarousel({ loop: true }, [Autoplay({ delay: 3000 })]);
+  const [emblaRef] = useEmblaCarousel(
+    { loop: true, dragFree: true }, 
+    [Autoplay({ delay: 1500 })] // Faster autoplay speed
+  );
 
   return (
-    <section id="clients" className="py-24 bg-gradient-to-br from-indigo-900 to-purple-900">
+    <section id="clients" className="py-24 bg-black">
       <div className="container mx-auto px-4">
-        <motion.h2 
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-4xl font-bold text-center mb-12 text-purple-200"
+          className="text-center mb-12"
         >
-          Our Trusted Clients
-        </motion.h2>
+          <h2 className="text-4xl font-bold text-green-400 mb-4">
+            Our Trusted Clients
+          </h2>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Trusted by 30+ businesses worldwide
+          </p>
+        </motion.div>
         
         <div className="overflow-hidden" ref={emblaRef}>
           <div className="flex">
@@ -70,7 +78,7 @@ const Clients = () => {
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05 }}
                 >
-                  <Card className="h-full bg-white/10 backdrop-blur-lg border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
+                  <Card className="h-full glass-card">
                     <CardContent className="p-6">
                       <div className="aspect-video mb-4 overflow-hidden rounded-lg">
                         <img 
@@ -79,7 +87,7 @@ const Clients = () => {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <h3 className="text-xl font-semibold text-purple-300 mb-2">{client.name}</h3>
+                      <h3 className="text-xl font-semibold text-green-400 mb-2">{client.name}</h3>
                       <p className="text-gray-300 mb-2">{client.description}</p>
                       <div className="text-sm text-gray-400">
                         <p>Year: {client.year}</p>
