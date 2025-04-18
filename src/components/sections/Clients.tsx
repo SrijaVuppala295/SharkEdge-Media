@@ -45,8 +45,14 @@ const clients = [
 
 const Clients = () => {
   const [emblaRef] = useEmblaCarousel(
-    { loop: true, dragFree: true }, 
-    [Autoplay({ delay: 1500 })] // Faster autoplay speed
+    { 
+      loop: true, 
+      dragFree: true,
+      skipSnaps: true,
+      slidesToScroll: 1,
+      containScroll: "keepSnaps"
+    }, 
+    [Autoplay({ delay: 1000, stopOnInteraction: false })] // Even faster autoplay
   );
 
   return (
@@ -57,41 +63,43 @@ const Clients = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-green-400 mb-4">
             Our Trusted Clients
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Trusted by 30+ businesses worldwide
+            Empowering businesses worldwide with innovative solutions
           </p>
         </motion.div>
         
-        <div className="overflow-hidden" ref={emblaRef}>
+        <div className="overflow-hidden -mx-4" ref={emblaRef}>
           <div className="flex">
             {clients.map((client, index) => (
-              <div key={client.name} className="flex-[0_0_100%] min-w-0 md:flex-[0_0_50%] lg:flex-[0_0_33.333%] px-4">
+              <div key={client.name} className="flex-[0_0_100%] min-w-0 md:flex-[0_0_33.333%] lg:flex-[0_0_25%] px-4">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  <Card className="h-full glass-card">
+                  <Card className="h-full glass-card group hover:bg-green-950/20">
                     <CardContent className="p-6">
                       <div className="aspect-video mb-4 overflow-hidden rounded-lg">
                         <img 
                           src={client.image} 
                           alt={client.name} 
-                          className="w-full h-full object-cover"
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                       </div>
-                      <h3 className="text-xl font-semibold text-green-400 mb-2">{client.name}</h3>
+                      <h3 className="text-xl font-semibold text-green-400 mb-2 group-hover:text-green-300">
+                        {client.name}
+                      </h3>
                       <p className="text-gray-300 mb-2">{client.description}</p>
                       <div className="text-sm text-gray-400">
-                        <p>Year: {client.year}</p>
-                        <p className="mt-1">{client.project}</p>
+                        <p className="mb-1">Year: {client.year}</p>
+                        <p>{client.project}</p>
                       </div>
                     </CardContent>
                   </Card>

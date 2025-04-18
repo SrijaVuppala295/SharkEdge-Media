@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
@@ -26,42 +25,23 @@ const Navigation = ({ className }: { className?: string }) => {
     });
   };
 
-  const navItems = ["home", "about", "services", "reviews", "contact"].map((section, index) => ({
-    id: section,
-    label: section.charAt(0).toUpperCase() + section.slice(1),
+  const navItems = [
+    { id: "home", label: "Home" },
+    { id: "about", label: "About Us" },
+    { id: "services", label: "Services" },
+    { id: "clients", label: "Our Clients" },
+    { id: "reviews", label: "Reviews" },
+    { id: "contact", label: "Book a Call" }
+  ].map((item, index) => ({
+    ...item,
     delay: index * 0.1,
   }));
-
-  const navVariants = {
-    hidden: { y: -20, opacity: 0 },
-    visible: { 
-      y: 0, 
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const linkVariants = {
-    hidden: { y: 10, opacity: 0 },
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.3,
-        ease: "easeOut"
-      }
-    })
-  };
 
   return (
     <motion.nav
       initial="hidden"
       animate="visible"
-      variants={navVariants}
+      variants={staggerContainer}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
         isScrolled ? 
@@ -107,7 +87,7 @@ const Navigation = ({ className }: { className?: string }) => {
                 <motion.button
                   key={item.id}
                   custom={i}
-                  variants={linkVariants}
+                  variants={fadeInUp}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection(item.id)}
