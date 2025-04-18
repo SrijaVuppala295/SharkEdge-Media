@@ -4,6 +4,7 @@ import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Services from "@/components/sections/Services";
 import Reviews from "@/components/sections/Reviews";
+import BookCall from "@/components/sections/BookCall";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 
@@ -15,6 +16,7 @@ const Index = () => {
       <About />
       <Services />
       <Reviews />
+      <BookCall />
       <Contact />
       <Footer />
     </div>

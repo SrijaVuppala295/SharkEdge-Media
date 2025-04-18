@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -106,4 +105,16 @@
 
 .text-gradient {
   @apply bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-green-600;
+}
+
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
+
+/* Show default cursor for mobile devices */
+@media (max-width: 768px) {
+  * {
+    cursor: auto !important;
+  }
 }
