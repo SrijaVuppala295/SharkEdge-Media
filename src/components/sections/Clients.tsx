@@ -1,45 +1,59 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardContent } from "@/components/ui/card";
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
 
 const clients = [
   {
-    name: "TechGlobe Solutions",
-    description: "Digital Transformation & AI Integration",
-    year: "2023",
-    project: "Complete digital overhaul and AI implementation",
-    image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&dpr=2&q=80"
+    name: "VentureFirst Capital",
+    description: "Top Venture Fund",
+    logo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&dpr=2&q=80"
   },
   {
-    name: "EcoSmart Industries",
-    description: "Social Media Management & Content Strategy",
-    year: "2023",
-    project: "Sustainable marketing campaign",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&dpr=2&q=80"
+    name: "TechForward",
+    description: "Innovation Hub",
+    logo: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&dpr=2&q=80"
   },
   {
-    name: "FinanceFlow Corp",
-    description: "Marketing Automation & Analytics",
-    year: "2022",
-    project: "Automated marketing workflow",
-    image: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=800&dpr=2&q=80"
+    name: "DigitalPrime",
+    description: "Tech Investment",
+    logo: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=800&dpr=2&q=80"
   },
   {
-    name: "HealthTech Solutions",
-    description: "Digital Marketing & Brand Development",
-    year: "2022",
-    project: "Healthcare brand transformation",
-    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&dpr=2&q=80"
+    name: "NextGen Ventures",
+    description: "Startup Accelerator",
+    logo: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&dpr=2&q=80"
   },
   {
-    name: "RetailPro Stores",
-    description: "E-commerce & Social Media Marketing",
-    year: "2023",
-    project: "Online retail presence expansion",
-    image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&dpr=2&q=80"
+    name: "AlphaGrowth",
+    description: "Growth Partners",
+    logo: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&dpr=2&q=80"
+  },
+  {
+    name: "InnovateX",
+    description: "Innovation Lab",
+    logo: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&dpr=2&q=80"
+  },
+  {
+    name: "FutureScale",
+    description: "Scale-up Fund",
+    logo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&dpr=2&q=80"
+  },
+  {
+    name: "TechVision",
+    description: "Tech Investments",
+    logo: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=800&dpr=2&q=80"
+  },
+  {
+    name: "PeakCapital",
+    description: "Venture Capital",
+    logo: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&dpr=2&q=80"
+  },
+  {
+    name: "GrowthForge",
+    description: "Growth Partners",
+    logo: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&dpr=2&q=80"
   }
 ];
 
@@ -52,7 +66,7 @@ const Clients = () => {
       slidesToScroll: 1,
       containScroll: "keepSnaps"
     }, 
-    [Autoplay({ delay: 1000, stopOnInteraction: false })] // Even faster autoplay
+    [Autoplay({ delay: 800, stopOnInteraction: false })]
   );
 
   return (
@@ -65,44 +79,37 @@ const Clients = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl font-bold text-green-400 mb-4">
-            Our Trusted Clients
+          <h2 className="text-6xl font-light text-white mb-4">
+            Portfolio Clients
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Empowering businesses worldwide with innovative solutions
-          </p>
         </motion.div>
         
         <div className="overflow-hidden -mx-4" ref={emblaRef}>
           <div className="flex">
             {clients.map((client, index) => (
-              <div key={client.name} className="flex-[0_0_100%] min-w-0 md:flex-[0_0_33.333%] lg:flex-[0_0_25%] px-4">
+              <div key={client.name} className="flex-[0_0_100%] min-w-0 md:flex-[0_0_25%] px-4">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  whileHover={{ scale: 1.02 }}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-center"
                 >
-                  <Card className="h-full glass-card group hover:bg-green-950/20">
-                    <CardContent className="p-6">
-                      <div className="aspect-video mb-4 overflow-hidden rounded-lg">
-                        <img 
-                          src={client.image} 
-                          alt={client.name} 
-                          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                        />
-                      </div>
-                      <h3 className="text-xl font-semibold text-green-400 mb-2 group-hover:text-green-300">
-                        {client.name}
-                      </h3>
-                      <p className="text-gray-300 mb-2">{client.description}</p>
-                      <div className="text-sm text-gray-400">
-                        <p className="mb-1">Year: {client.year}</p>
-                        <p>{client.project}</p>
-                      </div>
-                    </CardContent>
-                  </Card>
+                  <div className="aspect-square mb-4 relative group">
+                    <div className="absolute inset-0 rounded-full bg-white/10 backdrop-blur-sm transition-all duration-300 group-hover:bg-white/20" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <img 
+                        src={client.logo} 
+                        alt={client.name}
+                        className="w-16 h-16 object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                      />
+                    </div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-white mb-2">
+                    {client.name}
+                  </h3>
+                  <p className="text-gray-400">{client.description}</p>
                 </motion.div>
               </div>
             ))}

@@ -1,8 +1,8 @@
+
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { fadeInUp, slideInFromRight, staggerContainer } from "@/lib/animations";
+import { motion } from "framer-motion";
 
 const Navigation = ({ className }: { className?: string }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -19,34 +19,22 @@ const Navigation = ({ className }: { className?: string }) => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     setIsMobileMenuOpen(false);
-    element?.scrollIntoView({ 
-      behavior: "smooth",
-      block: "start"
-    });
+    element?.scrollIntoView({ behavior: "smooth" });
   };
 
   const navItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About Us" },
-    { id: "services", label: "Services" },
-    { id: "clients", label: "Our Clients" },
-    { id: "reviews", label: "Reviews" },
-    { id: "contact", label: "Book a Call" }
-  ].map((item, index) => ({
-    ...item,
-    delay: index * 0.1,
-  }));
+    { id: "services", label: "SERVICES" },
+    { id: "about", label: "ABOUT US" },
+    { id: "clients", label: "CASE STUDIES" },
+  ];
 
   return (
     <motion.nav
-      initial="hidden"
-      animate="visible"
-      variants={staggerContainer}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        isScrolled ? 
-          "bg-black/80 backdrop-blur-md border-b border-green-500/20 py-2" : 
-          "bg-transparent py-4",
+        isScrolled ? "bg-black/80 backdrop-blur-md py-2" : "bg-transparent py-4",
         className
       )}
     >
@@ -55,91 +43,64 @@ const Navigation = ({ className }: { className?: string }) => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
             className="flex-shrink-0"
           >
-            <motion.span 
-              className="text-2xl font-bold text-gradient"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Sharkedge Media
-            </motion.span>
+            <span className="text-2xl font-bold">
+              <span className="text-white">Atomik</span>{" "}
+              <span className="text-[#6366f1]">Growth</span>
+            </span>
           </motion.div>
-          
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+
+          <div className="hidden md:flex items-center space-x-12">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="text-sm text-white hover:text-gray-300 transition-colors tracking-wider"
+              >
+                {item.label}
+              </button>
+            ))}
+            <button 
+              onClick={() => scrollToSection("contact")}
+              className="px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition-colors duration-300 rounded-full text-sm tracking-wider"
+            >
+              BOOK A CALL
+            </button>
+          </div>
+
+          <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-green-400 hover:text-green-300 transition-colors"
+            className="md:hidden text-white"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </motion.button>
-
-          <div className="hidden md:block">
-            <motion.div 
-              variants={staggerContainer}
-              initial="initial"
-              animate="animate"
-              className="flex items-center space-x-8"
-            >
-              {navItems.map((item, i) => (
-                <motion.button
-                  key={item.id}
-                  custom={i}
-                  variants={fadeInUp}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => scrollToSection(item.id)}
-                  className="relative text-gray-300 hover:text-green-400 transition-colors capitalize group"
-                >
-                  {item.label}
-                  <motion.span 
-                    className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: "100%" }}
-                  />
-                </motion.button>
-              ))}
-            </motion.div>
-          </div>
+          </button>
         </div>
 
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden mt-4"
-            >
-              <motion.div 
-                variants={slideInFromRight}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                className="glass-card rounded-lg p-4 space-y-2"
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden mt-4 bg-black/90 backdrop-blur-md rounded-lg p-4"
+          >
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="block w-full text-left px-4 py-2 text-white hover:text-gray-300 transition-colors text-sm tracking-wider"
               >
-                {navItems.map((item, i) => (
-                  <motion.button
-                    key={item.id}
-                    variants={fadeInUp}
-                    custom={i}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                    whileHover={{ x: 10 }}
-                    onClick={() => scrollToSection(item.id)}
-                    className="block w-full text-left px-3 py-2 text-gray-300 hover:text-green-400 hover:bg-green-500/10 rounded transition-colors capitalize"
-                  >
-                    {item.label}
-                  </motion.button>
-                ))}
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                {item.label}
+              </button>
+            ))}
+            <button 
+              onClick={() => scrollToSection("contact")}
+              className="w-full mt-2 px-4 py-2 border border-white text-white hover:bg-white hover:text-black transition-colors duration-300 rounded-full text-sm tracking-wider"
+            >
+              BOOK A CALL
+            </button>
+          </motion.div>
+        )}
       </div>
     </motion.nav>
   );
