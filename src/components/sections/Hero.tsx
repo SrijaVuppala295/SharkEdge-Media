@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -56,7 +55,7 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="text-5xl md:text-7xl font-bold mb-6 tracking-tight bg-gradient-to-r from-green-400 via-green-200 to-emerald-400 bg-clip-text text-transparent"
         >
-          Sharkedge Media
+          InnovateSync Solutions
         </motion.h1>
         
         <motion.p 

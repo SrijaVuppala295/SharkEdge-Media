@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, spring } from 'framer-motion';
 import { MousePointer2 } from 'lucide-react';
 
 const Cursor = () => {
@@ -30,8 +30,10 @@ const Cursor = () => {
         }}
         transition={{
           type: "spring",
-          stiffness: 350,
-          damping: 15,
+          mass: 0.3,
+          stiffness: 100,
+          damping: 10,
+          restDelta: 0.001
         }}
       />
       <motion.div
@@ -41,6 +43,13 @@ const Cursor = () => {
           y: mousePosition.y - 4,
           rotate: isPointer ? 45 : 0,
           scale: isPointer ? 1.2 : 1,
+        }}
+        transition={{
+          type: "spring",
+          mass: 0.3,
+          stiffness: 100,
+          damping: 10,
+          restDelta: 0.001
         }}
       >
         <MousePointer2 className="text-green-400/80 w-4 h-4" />
