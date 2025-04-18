@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { motion, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -11,31 +12,49 @@ const Hero = () => {
   ];
 
   const statsRef = useRef(null);
-  const isInView = useInView(statsRef, { once: true });
+  const isInView = useInView(statsRef, { once: false }); // Changed to false to allow re-triggering
   const [counts, setCounts] = useState(stats.map(() => 0));
+  
+  // Function to animate counters
+  const animateCounters = () => {
+    stats.forEach((stat, index) => {
+      const duration = 2000; // 2 seconds
+      const steps = 60;
+      const increment = stat.end / steps;
+      let current = 0;
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= stat.end) {
+          current = stat.end;
+          clearInterval(timer);
+        }
+        setCounts(prev => {
+          const newCounts = [...prev];
+          newCounts[index] = Math.round(current);
+          return newCounts;
+        });
+      }, duration / steps);
+    });
+  };
 
+  // Trigger animation when in view
   useEffect(() => {
     if (isInView) {
-      stats.forEach((stat, index) => {
-        const duration = 2000; // 2 seconds
-        const steps = 60;
-        const increment = stat.end / steps;
-        let current = 0;
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= stat.end) {
-            current = stat.end;
-            clearInterval(timer);
-          }
-          setCounts(prev => {
-            const newCounts = [...prev];
-            newCounts[index] = Math.round(current);
-            return newCounts;
-          });
-        }, duration / steps);
-      });
+      animateCounters();
     }
   }, [isInView]);
+  
+  // Set up periodic counter refresh (every 15 seconds)
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      // Reset counts to 0 first
+      setCounts(stats.map(() => 0));
+      // Then animate them again
+      setTimeout(animateCounters, 100);
+    }, 15000); // 15 seconds
+    
+    return () => clearInterval(intervalId);
+  }, []);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
