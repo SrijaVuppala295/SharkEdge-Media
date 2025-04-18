@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { MousePointer2 } from 'lucide-react';
 
 const Cursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -22,33 +22,28 @@ const Cursor = () => {
   return (
     <>
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 bg-green-400 rounded-full pointer-events-none z-50 mix-blend-difference"
+        className="fixed top-0 left-0 w-3 h-3 bg-green-400/80 rounded-full pointer-events-none z-50 mix-blend-difference"
         animate={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8,
-          scale: isPointer ? 1.5 : 1,
+          x: mousePosition.x - 6,
+          y: mousePosition.y - 6,
+          scale: isPointer ? 2 : 1,
         }}
         transition={{
           type: "spring",
-          stiffness: 500,
-          damping: 28,
-          mass: 0.5,
+          stiffness: 350,
+          damping: 15,
         }}
       />
       <motion.div
         className="fixed top-0 left-0 pointer-events-none z-50"
         animate={{
-          x: mousePosition.x + 10,
-          y: mousePosition.y - 10,
+          x: mousePosition.x - 4,
+          y: mousePosition.y - 4,
           rotate: isPointer ? 45 : 0,
-        }}
-        transition={{
-          type: "spring",
-          stiffness: 500,
-          damping: 28,
+          scale: isPointer ? 1.2 : 1,
         }}
       >
-        <ArrowUpRight className="text-green-400 w-4 h-4" />
+        <MousePointer2 className="text-green-400/80 w-4 h-4" />
       </motion.div>
     </>
   );
