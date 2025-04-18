@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = ({ className }: { className?: string }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -24,57 +25,80 @@ const Navigation = ({ className }: { className?: string }) => {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        isScrolled ? "bg-black/80 backdrop-blur-md border-b border-green-500/20" : "bg-transparent",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
+        isScrolled ? 
+          "bg-black/80 backdrop-blur-md border-b border-green-500/20 py-2" : 
+          "bg-transparent py-4",
         className
       )}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex-shrink-0">
-            <span className="text-xl font-bold text-green-400">Sharkedge Media</span>
-          </div>
+        <div className="flex items-center justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex-shrink-0"
+          >
+            <span className="text-2xl font-bold bg-gradient-to-r from-green-400 to-green-600 bg-clip-text text-transparent">
+              Sharkedge Media
+            </span>
+          </motion.div>
           
-          {/* Mobile menu button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-green-400 hover:text-green-300"
+            className="md:hidden text-green-400 hover:text-green-300 transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
-          {/* Desktop navigation */}
           <div className="hidden md:block">
-            <div className="ml-10 flex items-center space-x-8">
-              {["home", "about", "services", "reviews", "contact"].map((section) => (
-                <button
+            <motion.div 
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center space-x-8"
+            >
+              {["home", "about", "services", "reviews", "contact"].map((section, index) => (
+                <motion.button
                   key={section}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => scrollToSection(section)}
-                  className="text-gray-300 hover:text-green-400 transition-colors capitalize"
+                  className="relative text-gray-300 hover:text-green-400 transition-colors capitalize group"
                 >
                   {section}
-                </button>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full" />
+                </motion.button>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
 
-        {/* Mobile navigation */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {["home", "about", "services", "reviews", "contact"].map((section) => (
-                <button
-                  key={section}
-                  onClick={() => scrollToSection(section)}
-                  className="block w-full text-left px-3 py-2 text-gray-300 hover:text-green-400 transition-colors capitalize"
-                >
-                  {section}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden mt-4"
+            >
+              <div className="glass-card rounded-lg p-4 space-y-2">
+                {["home", "about", "services", "reviews", "contact"].map((section) => (
+                  <motion.button
+                    key={section}
+                    whileHover={{ x: 5 }}
+                    onClick={() => scrollToSection(section)}
+                    className="block w-full text-left px-3 py-2 text-gray-300 hover:text-green-400 hover:bg-green-500/10 rounded transition-colors capitalize"
+                  >
+                    {section}
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </nav>
   );
