@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
@@ -24,8 +23,8 @@ const Navigation = ({ className }: { className?: string }) => {
 
   const navItems = [
     { id: "services", label: "SERVICES" },
-    { id: "about", label: "ABOUT US" },
-    { id: "clients", label: "CASE STUDIES" },
+    { id: "about", label: "ABOUT" },
+    { id: "clients", label: "OUR CLIENTS" },
   ];
 
   return (
@@ -46,8 +45,8 @@ const Navigation = ({ className }: { className?: string }) => {
             className="flex-shrink-0"
           >
             <span className="text-2xl font-bold">
-              <span className="text-white">Atomik</span>{" "}
-              <span className="text-[#6366f1]">Growth</span>
+              <span className="text-white">Sharkedge</span>{" "}
+              <span className="text-[#6366f1]">Media</span>
             </span>
           </motion.div>
 
@@ -65,7 +64,7 @@ const Navigation = ({ className }: { className?: string }) => {
               onClick={() => scrollToSection("contact")}
               className="px-6 py-2 border border-white text-white hover:bg-white hover:text-black transition-colors duration-300 rounded-full text-sm tracking-wider"
             >
-              BOOK A CALL
+              CONTACT US
             </button>
           </div>
 
@@ -97,7 +96,7 @@ const Navigation = ({ className }: { className?: string }) => {
               onClick={() => scrollToSection("contact")}
               className="w-full mt-2 px-4 py-2 border border-white text-white hover:bg-white hover:text-black transition-colors duration-300 rounded-full text-sm tracking-wider"
             >
-              BOOK A CALL
+              CONTACT US
             </button>
           </motion.div>
         )}
