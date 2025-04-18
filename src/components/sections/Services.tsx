@@ -1,6 +1,7 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageSquareCode, Facebook, Key, BarChart3, Brain } from "lucide-react";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -32,20 +33,28 @@ const services = [
 
 const Services = () => {
   return (
-    <section id="services" className="py-24 bg-gray-50">
+    <section id="services" className="py-24 bg-black/40">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">What We Do</h2>
+        <h2 className="text-4xl font-bold text-center mb-12 text-green-400">What We Do</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service) => (
-            <Card key={service.title} className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <service.icon className="w-10 h-10 text-indigo-600 mb-4" />
-                <CardTitle>{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">{service.description}</p>
-              </CardContent>
-            </Card>
+          {services.map((service, index) => (
+            <motion.div
+              key={service.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <Card className="glass-card hover-scale h-full">
+                <CardHeader>
+                  <service.icon className="w-12 h-12 text-green-400 mb-4" />
+                  <CardTitle className="text-green-300">{service.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-300">{service.description}</p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>
