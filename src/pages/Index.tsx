@@ -1,4 +1,5 @@
 
+import React from "react";
 import Navigation from "@/components/ui/navigation";
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
