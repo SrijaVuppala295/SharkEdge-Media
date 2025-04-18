@@ -43,6 +43,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
+          className="space-y-4 md:space-y-0 md:space-x-4"
         >
           <Button
             onClick={scrollToServices}
@@ -50,6 +51,32 @@ const Hero = () => {
           >
             Explore Services
           </Button>
+        </motion.div>
+
+        {/* Animated Stats */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+          className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-16"
+        >
+          {[
+            { number: "500+", label: "Clients Served" },
+            { number: "95%", label: "Success Rate" },
+            { number: "24/7", label: "Support" },
+            { number: "100%", label: "Satisfaction" },
+          ].map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.8 + index * 0.1, duration: 0.3 }}
+              className="glass-card p-6"
+            >
+              <h3 className="text-3xl font-bold text-green-400 mb-2">{stat.number}</h3>
+              <p className="text-gray-400">{stat.label}</p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

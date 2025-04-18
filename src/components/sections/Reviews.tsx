@@ -2,6 +2,13 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const reviews = [
   {
@@ -40,36 +47,47 @@ const Reviews = () => {
         >
           Client Reviews
         </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reviews.map((review, index) => (
-            <motion.div
-              key={review.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-            >
-              <Card className="glass-card hover-scale h-full">
-                <CardContent className="p-6">
-                  <div className="flex justify-between items-start mb-4">
-                    <Quote className="w-8 h-8 text-green-400 opacity-50" />
-                    <div className="flex">
-                      {[...Array(review.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-green-400 fill-green-400" />
-                      ))}
-                    </div>
-                  </div>
-                  <p className="text-gray-300 mb-6">{review.content}</p>
-                  <div className="mt-auto">
-                    <p className="font-semibold text-green-400">{review.name}</p>
-                    <p className="text-sm text-gray-400">{review.role}</p>
-                    <p className="text-sm text-gray-500">{review.company}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+        <Carousel
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+          className="w-full max-w-5xl mx-auto"
+        >
+          <CarouselContent>
+            {reviews.map((review, index) => (
+              <CarouselItem key={review.name} className="md:basis-1/2 lg:basis-1/3">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <Card className="glass-card hover-scale h-full">
+                    <CardContent className="p-6">
+                      <div className="flex justify-between items-start mb-4">
+                        <Quote className="w-8 h-8 text-green-400 opacity-50" />
+                        <div className="flex">
+                          {[...Array(review.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 text-green-400 fill-green-400" />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="text-gray-300 mb-6">{review.content}</p>
+                      <div className="mt-auto">
+                        <p className="font-semibold text-green-400">{review.name}</p>
+                        <p className="text-sm text-gray-400">{review.role}</p>
+                        <p className="text-sm text-gray-500">{review.company}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="hidden md:flex" />
+          <CarouselNext className="hidden md:flex" />
+        </Carousel>
       </div>
     </section>
   );
