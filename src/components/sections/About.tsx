@@ -30,15 +30,18 @@ const About = () => {
   return (
     <section id="about" className="py-24 bg-black/60">
       <div className="container mx-auto px-4">
-        <motion.h2 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-4xl font-bold text-center mb-12 text-green-400"
-        >
-          Who We Are
-        </motion.h2>
+      <motion.div 
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5 }}
+  viewport={{ once: true }}
+  className="text-center mb-12"
+>
+<h2 className="text-5xl font-bold tracking-wide text-white mb-6">About Us</h2>
+
+<div className="h-1 w-20 bg-green-500 mx-auto"></div>
+</motion.div>
+
         
         <div className="max-w-4xl mx-auto">
           <motion.div

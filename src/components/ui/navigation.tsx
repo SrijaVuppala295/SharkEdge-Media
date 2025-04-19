@@ -1,8 +1,7 @@
-
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const Navigation = ({ className }: { className?: string }) => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,88 +22,83 @@ const Navigation = ({ className }: { className?: string }) => {
   };
 
   const navItems = [
-    { id: "services", label: "SERVICES" },
-    { id: "about", label: "ABOUT" },
-    { id: "clients", label: "OUR CLIENTS" },
+    { id: "about", label: "About Us" },
+    { id: "reviews", label: "Testimonials" },
+    { id: "faq", label: "FAQ" }
   ];
 
   return (
-    <motion.nav
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
+    <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        isScrolled ? "bg-black/80 backdrop-blur-md py-2" : "bg-transparent py-4",
+        isScrolled
+          ? "bg-black/80 backdrop-blur-md border-b border-green-500/10 py-2"
+          : "bg-transparent py-4",
         className
       )}
     >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex-shrink-0"
-          >
-            <span className="text-3xl font-light tracking-wider">
-              <span className="text-white">SharkEdge</span>{" "}
-              <span className="text-green-500">Media</span>
-            </span>
-          </motion.div>
+      <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.4 }}
+          className="text-2xl font-bold whitespace-nowrap"
+        >
+          <span className="text-green-400">SharkEdge</span>{" "}
+          <span className="text-white">Media</span>
+        </motion.div>
 
-          <div className="hidden md:flex items-center space-x-12">
+        <div className="hidden md:flex items-center justify-center">
+          <div className="flex bg-black border border-white/10 px-6 py-2 rounded-full space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-sm font-light text-white hover:text-green-400 transition-colors tracking-[0.2em]"
+                className="text-white font-semibold text-sm uppercase tracking-wide hover:text-green-400 transition-colors relative group"
               >
                 {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-green-400 transition-all duration-300 group-hover:w-full"></span>
               </button>
             ))}
-            <button 
-              onClick={() => scrollToSection("contact")}
-              className="px-6 py-2 border border-green-500 text-white hover:bg-green-500 hover:text-black transition-colors duration-300 rounded-full text-sm font-light tracking-[0.2em]"
-            >
-              CONTACT US
-            </button>
           </div>
+        </div>
 
+        <div className="md:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden text-white"
+            className="text-green-400 hover:text-green-300 transition-colors"
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
+      </div>
 
+      <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 bg-black/90 backdrop-blur-md rounded-lg p-4"
+            transition={{ duration: 0.3 }}
+            className="md:hidden mt-3 px-4"
           >
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className="block w-full text-left px-4 py-2 text-white hover:text-green-400 transition-colors text-sm font-light tracking-[0.2em]"
-              >
-                {item.label}
-              </button>
-            ))}
-            <button 
-              onClick={() => scrollToSection("contact")}
-              className="w-full mt-2 px-4 py-2 border border-green-500 text-white hover:bg-green-500 hover:text-black transition-colors duration-300 rounded-full text-sm font-light tracking-[0.2em]"
-            >
-              CONTACT US
-            </button>
+            <div className="bg-black/80 border border-white/10 backdrop-blur-md rounded-lg p-4 space-y-2">
+              {navItems.map((item) => (
+                <motion.button
+                  key={item.id}
+                  whileHover={{ x: 5 }}
+                  onClick={() => scrollToSection(item.id)}
+                  className="block w-full text-left text-white py-2 px-3 rounded hover:bg-green-500/10 hover:text-green-400 transition-colors uppercase tracking-wide text-sm"
+                >
+                  {item.label}
+                </motion.button>
+              ))}
+            </div>
           </motion.div>
         )}
-      </div>
-    </motion.nav>
+      </AnimatePresence>
+    </nav>
   );
 };
 
 export default Navigation;
-

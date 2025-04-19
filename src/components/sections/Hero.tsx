@@ -74,12 +74,28 @@ const Hero = () => {
           transition={{ duration: 0.8 }}
           className="mb-6"
         >
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-green-400 via-green-200 to-emerald-400 bg-clip-text text-transparent mb-4">
-            Digital Marketing
-          </h1>
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-green-400 via-green-200 to-emerald-400 bg-clip-text text-transparent">
+     <h1
+  style={{
+   
+    fontWeight: 700,
+    fontStyle: 'normal',
+    color: 'oklch(0.7707 0.1893 145.84)',
+    fontSize: '72px',
+    lineHeight: '72px',
+    textAlign: 'center',
+    marginBottom: '1rem',
+  }}
+>
+  Tech-Driven Marketing Solutions <br /> for Scalable Client Success
+</h1>
+
+
+
+
+
+          {/* <h1 className="text-5xl md:text-7xl font-bold tracking-tight bg-gradient-to-r from-green-400 via-green-200 to-emerald-400 bg-clip-text text-transparent">
             & Growth Solutions
-          </h1>
+          </h1> */}
         </motion.div>
         
         <motion.p 
@@ -88,7 +104,7 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed"
         >
-          Transform your digital presence with AI-powered marketing solutions and cutting-edge social media automation.
+         We develop and integrate custom tools using Facebook APIs to manage, optimize, and automate social media performance for multiple clients.
         </motion.p>
 
         <motion.div
@@ -96,12 +112,22 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <Button
-            onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
-            className="bg-green-500 hover:bg-green-600 text-black font-semibold px-8 py-6 rounded-lg text-lg shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-300 transform hover:scale-105"
-          >
-            Explore Services
-          </Button>
+         <div className="flex flex-wrap justify-center gap-4">
+  <Button
+    onClick={() => document.getElementById("services")?.scrollIntoView({ behavior: "smooth" })}
+    className="bg-green-500 hover:bg-green-600 text-black font-semibold px-8 py-6 rounded-lg text-lg shadow-lg shadow-green-500/20 hover:shadow-green-500/40 transition-all duration-300 transform hover:scale-105"
+  >
+    Explore Services
+  </Button>
+
+  <Button
+    onClick={() => document.getElementById("book-call")?.scrollIntoView({ behavior: "smooth" })}
+    className="bg-transparent border border-green-500 text-green-400 font-semibold px-8 py-6 rounded-lg text-lg hover:bg-green-600 hover:text-black transition-all duration-300 transform hover:scale-105"
+  >
+    Book a call
+  </Button>
+</div>
+
         </motion.div>
 
         <motion.div 

@@ -13,6 +13,34 @@ import {
 
 const reviews = [
   {
+    name: "Ananya Sharma",
+    role: "Marketing Head",
+    company: "DigiBloom",
+    content: "Their AI-driven strategies gave our brand a fresh boost online. Highly recommend their team!",
+    rating: 5
+  },
+  {
+    name: "Rohan Mehta",
+    role: "Founder",
+    company: "FreshCart India",
+    content: "Amazing service. Our customer acquisition cost dropped significantly within two months.",
+    rating: 5
+  },
+  {
+    name: "Emily Rodriguez",
+    role: "Startup Founder",
+    company: "InnovateTech",
+    content: "Outstanding service and results. The team went above and beyond to help us scale fast with minimal spend.",
+    rating: 5
+  },
+  {
+    name: "Aditya Nair",
+    role: "E-commerce Manager",
+    company: "ShopEase",
+    content: "The automations helped streamline our marketing flows. Slight learning curve, but worth it.",
+    rating: 4
+  },
+  {
     name: "Sarah Johnson",
     role: "Marketing Director",
     company: "TechCorp",
@@ -20,20 +48,35 @@ const reviews = [
     rating: 5
   },
   {
-    name: "Michael Chen",
-    role: "E-commerce Manager",
-    company: "GlobalStore",
-    content: "The automation tools save us countless hours. Their expertise in Facebook APIs is unmatched.",
-    rating: 5
+    name: "Pooja Iyer",
+    role: "Digital Marketing Specialist",
+    company: "TrendNova",
+    content: "They truly understand the Indian market nuances. Impressed by the creative campaigns.",
+    rating: 4
   },
   {
-    name: "Emily Rodriguez",
-    role: "Startup Founder",
-    company: "InnovateTech",
-    content: "Outstanding service and results. Their team went above and beyond to help us scale our marketing efforts.",
+    name: "Vikram Desai",
+    role: "Head of Sales",
+    company: "UrbanGear",
+    content: "Good strategies and very responsive team. Would have liked faster turnaround on a few requests.",
+    rating: 4
+  },
+  {
+    name: "Chloe Kim",
+    role: "Digital Strategist",
+    company: "VisionX",
+    content: "Loved the creative approach and AI tools. Would love even more transparency in pricing tiers.",
+    rating: 4
+  },
+  {
+    name: "Neha Kapoor",
+    role: "Growth Lead",
+    company: "FinSure",
+    content: "Their ad optimization literally doubled our lead quality in just a month. Solid partnership.",
     rating: 5
   }
 ];
+
 
 const Reviews = () => {
   return (
@@ -46,7 +89,9 @@ const Reviews = () => {
           viewport={{ once: true }}
           className="text-4xl font-bold text-center mb-12 text-green-400"
         >
-          Client Reviews
+            <h2 className="text-5xl font-bold tracking-wide text-white mb-6">Testimonials</h2>
+
+           <div className="h-1 w-20 bg-green-500 mx-auto"></div>
         </motion.h2>
         <Carousel
           opts={{

@@ -1,6 +1,6 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { MessageSquareCode, Facebook, Key, BarChart3, Brain } from "lucide-react";
+import { MessageSquareCode, Facebook, Key, BarChart3, Brain,Share2 } from "lucide-react";
 import { motion } from "framer-motion";
 
 const services = [
@@ -29,13 +29,22 @@ const services = [
     title: "Content Automation Tools",
     description: "Auto-post, schedule, and manage content with AI.",
   },
+  {
+    icon: Share2,
+    title: "Cross-Platform Sharing",
+    description: "Enable seamless content sharing across Facebook, Instagram, and WhatsApp.",
+  }
+  
 ];
 
 const Services = () => {
   return (
     <section id="services" className="py-24 bg-black/40">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12 text-green-400">What We Do</h2>
+      <h2 className="text-5xl font-bold tracking-wide text-white mb-6 text-center">Our Services</h2>
+
+<div className="h-1 w-20 bg-green-500 mx-auto mb-6"></div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div

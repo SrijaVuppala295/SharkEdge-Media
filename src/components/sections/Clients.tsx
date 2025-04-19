@@ -2,48 +2,55 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import useEmblaCarousel from 'embla-carousel-react';
 import Autoplay from 'embla-carousel-autoplay';
-import { cn } from '@/lib/utils';
 
 const clients = [
   {
-    name: "TechVision",
-    logo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&dpr=2&q=80"
+    name: "Power Packs",
+    logo: "3.png"
   },
   {
-    name: "InnovateX",
-    logo: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&dpr=2&q=80"
+    name: "Heartly Organic",
+    logo: "9.png"
   },
   {
-    name: "NextGen",
-    logo: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=800&dpr=2&q=80"
+    name: "Sarah Becker",
+    logo: "11.png"
   },
   {
-    name: "AlphaGrowth",
-    logo: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&dpr=2&q=80"
+    name: "Sandra Harens",
+    logo: "16.png"
   },
   {
-    name: "FutureScale",
-    logo: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&dpr=2&q=80"
+    name: "Palm Fitness",
+    logo: "22.png"
   },
   {
-    name: "DigitalPrime",
-    logo: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&dpr=2&q=80"
+    name: "TeemVideo",
+    logo: "26.png"
   },
   {
-    name: "VentureFirst",
-    logo: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=800&dpr=2&q=80"
+    name: "La Blan Co",
+    logo: "28.png"
   },
   {
-    name: "PeakCapital",
-    logo: "https://images.unsplash.com/photo-1554469384-e58fac16e23a?w=800&dpr=2&q=80"
+    name: "Katala",
+    logo: "29.png"
   },
   {
-    name: "GrowthForge",
-    logo: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&dpr=2&q=80"
+    name: "Little Creatures",
+    logo: "35.png"
   },
   {
-    name: "TechForward",
-    logo: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&dpr=2&q=80"
+    name: "Dreamery",
+    logo: "39.png"
+  },
+  {
+    name: "Tappt",
+    logo: "40.png"
+  },
+  {
+    name: "Circle Flow",
+    logo: "42.png"
   }
 ];
 
@@ -77,9 +84,10 @@ const Clients = () => {
           animate={controls}
           className="text-center mb-16"
         >
-          <h2 className="text-5xl md:text-6xl font-light tracking-wider text-white mb-6">
-            Our Trusted <span className="text-green-500">Clients</span>
+          <h2 className="text-5xl font-bold tracking-wide text-white-500 mb-6">
+            Our Trusted Clients
           </h2>
+
           <div className="h-1 w-20 bg-green-500 mx-auto"></div>
         </motion.div>
         
@@ -88,28 +96,34 @@ const Clients = () => {
             {clients.map((client, index) => (
               <div key={client.name} className="flex-[0_0_100%] min-w-0 md:flex-[0_0_20%] px-4">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                  className="text-center"
-                >
-                  <div className="aspect-square mb-4 relative group w-40 h-40 mx-auto">
-                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-green-500/10 to-green-900/10 backdrop-blur-sm transition-all duration-300 group-hover:bg-green-700/20" />
-                    <div className="absolute inset-0 rounded-full border border-green-500/20 group-hover:border-green-500/40 transition-all duration-300"></div>
-                    <div className="absolute inset-0 flex items-center justify-center p-6">
-                      <img 
-                        src={client.logo} 
-                        alt={client.name}
-                        className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity duration-300 rounded-full"
-                      />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-green-400 transition-colors">
-                    {client.name}
-                  </h3>
-                </motion.div>
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.5, delay: index * 0.1 }}
+  viewport={{ once: true }}
+  whileHover={{ scale: 1.05 }}
+  className="text-center"
+>
+  <div className="relative group w-40 h-40 mx-auto">
+    {/* Circle background */}
+    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-green-500/10 to-green-900/10 backdrop-blur-sm transition-all duration-300 group-hover:bg-green-700/20" />
+    <div className="absolute inset-0 rounded-full border border-green-500/20 group-hover:border-green-500/40 transition-all duration-300"></div>
+    
+    {/* Image */}
+    <div className="absolute inset-0 flex items-center justify-center p-0">
+      <img 
+        src={client.logo} 
+        alt={client.name}
+        className="w-full h-full object-cover rounded-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"
+        style={{ filter: 'brightness(1.5)' }} // Optional: Increase brightness
+      />
+    </div>
+  </div>
+  <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-green-400 transition-colors">
+    {client.name}
+  </h3>
+</motion.div>
+
+
               </div>
             ))}
           </div>

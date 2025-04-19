@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -33,19 +32,23 @@ const faqs = [
 
 const FAQ = () => {
   return (
-    <section id="faq" className="py-24 bg-black/40">
+    <section id="faq" className="py-24 bg-black text-white">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="max-w-3xl mx-auto"
+          className="max-w-3xl mx-auto text-center" // This centers the header and line
         >
-          <h2 className="text-4xl font-bold text-center mb-12 text-gradient">
+          <h2 className="text-5xl font-bold text-white mb-6">
             Frequently Asked Questions
           </h2>
-          
+          <div className="h-1 w-20 bg-green-500 mx-auto mb-12"></div> {/* Center the line */}
+        </motion.div>
+
+        {/* Center the accordion as a whole */}
+        <div className="max-w-3xl mx-auto">
           <Accordion type="single" collapsible className="space-y-4">
             {faqs.map((faq, index) => (
               <motion.div
@@ -55,18 +58,21 @@ const FAQ = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <AccordionItem value={`item-${index}`} className="glass-card border-none px-6">
-                  <AccordionTrigger className="text-green-400 hover:text-green-300">
-                    {faq.question}
+                <AccordionItem
+                  value={`item-${index}`}
+                  className="bg-black/80 border border-transparent rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 px-6 py-4"
+                >
+                  <AccordionTrigger className="text-green-400 text-lg font-semibold hover:text-green-300 transition-colors relative">
+                    <span>{faq.question}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-300">
+                  <AccordionContent className="text-white text-lg">
                     {faq.answer}
                   </AccordionContent>
                 </AccordionItem>
               </motion.div>
             ))}
           </Accordion>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
